@@ -1,76 +1,122 @@
 
-import React, { useState } from "react";
-import Map, { NavigationControl } from "react-map-gl"
-import 'mapbox-gl/dist/mapbox-gl.css'
-import { Marker } from "react-map-gl";
-import "./Map.css"
+import React, { useState, useEffect } from "react";
+import Map, { NavigationControl, Marker } from "react-map-gl";
+import 'mapbox-gl/dist/mapbox-gl.css';
+import "./Map.css";
+// import Navbar from "./Navbar";
 
-function Maps(){
-    const [lng , setLng] = useState(76.379997)
-    const [lat , setLat] = useState(30.340000)
+function Maps() {
+    const [lng , setLng] = useState(76.379997);
+    const [lat , setLat] = useState(30.340000);
+    const [userLocation, setUserLocation] = useState(null);
+    const [showUser2Details, setShowUser2Details] = useState(false);
+    const [wantFood, setWantFood] = useState(false);
+    const [haveFood, setHaveFood] = useState(false);
+    const [wantFoodText, setWantFoodText] = useState("I Want Food");
+    const [haveFoodText, setHaveFoodText] = useState("I Have Food");
+
+    useEffect(() => {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    setUserLocation({
+                        latitude: position.coords.latitude,
+                        longitude: position.coords.longitude
+                    });
+                },
+                (error) => {
+                    console.error("Error getting user location:", error);
+                }
+            );
+        } else {
+            console.error("Geolocation is not supported by this browser.");
+        }
+    }, []);
+
+    const handleUser2MarkerClick = () => {
+        setShowUser2Details(!showUser2Details); 
+    };
+
+    const handleWantFoodToggle = () => {
+        setWantFood(!wantFood);
+        setHaveFood(false);
+        setWantFoodText(wantFood ? "I Want Food" : "Off");
+    };
+
+    const handleHaveFoodToggle = () => {
+        setHaveFood(!haveFood);
+        setWantFood(false);
+        setHaveFoodText(haveFood ? "I Have Food" : "Off");
+    };
 
     return(
        <>
        <div>
+        
            <Map mapboxAccessToken="pk.eyJ1IjoidmlzaG51MTM0NSIsImEiOiJjbHQwMmZkNjMwc2xpMmxvZXBtdzBwM3ppIn0.fUvZwkLLejPGBt_9BwPyZQ"
-                style={{ width: "100vw", height: "100vh" }}
+                style={{ width: "80vw", height: "70vh", position:"relative" , left:"11vw " ,borderRadius:"20px",top:"6vh",border:"2px solid #453c3c"}}
                 initialViewState={{
                     longitude: lng,
                     latitude: lat,
-                    zoom: 10 // Adding zoom level to have a better view of the marker
+                    zoom: 10 
                 }}
                 mapStyle="mapbox://styles/mapbox/streets-v9"
            >
-               <Marker latitude={lat} longitude={lng} />
+               {userLocation && (
+                   <Marker latitude={userLocation.latitude} longitude={userLocation.longitude}>
+                       <div style={{ color: 'red' }}></div>
+                       <img src={wantFood ? "/redmark.png" : (haveFood ? "/greenmark.png" : "/blackmark.png")} alt="error" className="marker"/>
+                   </Marker>
+               )}
+             
+               <Marker latitude={30.322259} longitude={76.387263}>
+                   <div style={{ color: 'blue', cursor: 'pointer' }} onClick={handleUser2MarkerClick}>
+                    <img src="/greenmark.png" alt="error" className="marker"/>
+                   </div>
+               </Marker>
+
+               <Marker latitude={30.33612} longitude={76.390712}>
+                   <div style={{ color: 'blue', cursor: 'pointer' }} onClick={handleUser2MarkerClick}>
+                    <img src="/blackmark.png" alt="error" className="marker"/>
+                   </div>
+               </Marker>
+               <Marker latitude={30.334103} longitude={76.37682}>
+                   <div style={{ color: 'blue', cursor: 'pointer' }} onClick={handleUser2MarkerClick}>
+                    <img src="/redmark.png" alt="error" className="marker"/>
+                   </div>
+               </Marker>
+               <Marker latitude={30.357551} longitude={76.376571}>
+                   <div style={{ color: 'blue', cursor: 'pointer' }} onClick={handleUser2MarkerClick}>
+                    <img src="/greenmark.png" alt="error" className="marker"/>
+                   </div>
+               </Marker>
+               <Marker latitude={30.339385} longitude={76.402686}>
+                   <div style={{ color: 'blue', cursor: 'pointer' }} onClick={handleUser2MarkerClick}>
+                    <img src="/redmark.png" alt="error" className="marker"/>
+                   </div>
+               </Marker>
+
                <div style={{ position: 'absolute', right: 0 }}>
                    <NavigationControl />
                </div>
            </Map>
-       </div>
-       </>
-    )
-}
+           
+            <div className={`user-details ${showUser2Details ? 'show' : ''}`}>
+            <div className="list">
+               <p>Name: Vishnu</p>
+               <p>Contact : 82644-XXXXX</p>
+               <p>Food: Dal Rice</p>
+               <p>Quantity: 2 people</p>
+            </div>
 
-export default Maps;
-
-/*
-import React, { useState } from "react";
-import Map, { NavigationControl } from "react-map-gl"
-import 'mapbox-gl/dist/mapbox-gl.css'
-import { Marker } from "react-map-gl";
-import "./Map.css"
-import mapboxgl from "mapbox-gl";
-import MapboxDirections from '@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions';
-
-function Maps(){
-    const [lng , setLng] = useState(76.379997)
-    const [lat , setLat] = useState(30.340000)
-
-    // Initialize the Mapbox directions object
-    mapboxgl.accessToken = 'pk.eyJ1IjoidmlzaG51MTM0NSIsImEiOiJjbHQwMmZkNjMwc2xpMmxvZXBtdzBwM3ppIn0.fUvZwkLLejPGBt_9BwPyZQ';
-    const directions = new MapboxDirections({
-        accessToken: mapboxgl.accessToken
-    });
-
-    return(
-       <>
-       <div>
-           <Map mapboxApiAccessToken={mapboxgl.accessToken}
-                style={{ width: "100%", height: "100vh" }}
-                center={[lng, lat]}
-                zoom={10}
-           >
-               <Marker latitude={lat} longitude={lng} />
-               <div style={{ position: 'absolute', top: 10, right: 10 }}>
-                   <NavigationControl />
                </div>
-               <div id="directions" style={{ position: 'absolute', top: 10, left: 10, maxWidth: '400px' }}></div>
-           </Map>
+           <div className="toggle-menus">
+               <button onClick={handleWantFoodToggle} className={`toggle-button ${wantFood ? 'active' : ''}` } id="want">{wantFoodText}</button>
+               <button onClick={handleHaveFoodToggle} className={`toggle-button ${haveFood ? 'active' : ''}`} id="have">{haveFoodText}</button>
+           </div>
        </div>
        </>
-    )
+    );
 }
 
 export default Maps;
-
-*/

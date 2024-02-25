@@ -1,0 +1,38 @@
+/* Style the navigation bar */
+.navbar {
+    background-color: #453c3c;
+    overflow: hidden;
+    height:80px;
+}
+
+
+.navbar a {
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 20px;
+    text-decoration: none;
+}
+
+#slogan{
+    position: fixed;
+    left: 66vw;
+    height: 80px;
+    top: 20px;
+    font-size: 20px;
+    color: #ddd;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.navbar a:hover {
+    background-color: #ddd;
+    color: black;
+}
+.image{
+    position:fixed;
+    left:5vw;
+    width:100px;
+    height:80px;
+
+}

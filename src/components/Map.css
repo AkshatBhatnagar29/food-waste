@@ -1,3 +1,70 @@
 .mapboxgl-control-container{
     display: none;
 }
+.user-details{
+    background-color: #000000a3;
+    position: fixed;
+    top: 0px;
+    height: 300px;
+    width: 300px;
+    display: block;
+    cursor: pointer;
+    /* display: block; */
+    display: none;
+    color: white;
+    border-radius: 54px;
+    position: fixed;
+    top: 37vh;
+    left: 41vw;
+    align-items: center;
+    justify-content: center;
+   
+}
+.show{
+    display: flex;
+}
+
+.list{
+    padding: 20px;
+
+}
+.list p{
+    font-size: 20px;
+}
+.marker{
+    height: 30px;
+    width: auto;
+}
+.toggle-button{
+    background-color: green;
+    padding: 15px;
+    color: white;
+    margin: 20px;
+    border-radius: 50px;
+    width: 151px;
+    cursor: pointer;
+}
+#want:hover{
+    background-color: red;
+    box-shadow: 0 0 18px 0 rgb(255, 255, 255);}
+
+
+
+#have:hover{
+    background-color: #80ff00;
+    box-shadow: 0 0 18px 0 rgb(255, 255, 255);
+}
+
+#have{
+    background-color: #84cc3b;
+    color: black;
+}
+#want{
+    background-color: #b94141;
+
+}
+.toggle-menus{
+    position: fixed;
+    left: 40vw;
+    bottom: 0vh;
+}

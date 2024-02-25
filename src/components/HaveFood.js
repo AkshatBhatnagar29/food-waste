@@ -6,7 +6,7 @@ import Navbar from "./components/Navbar";
 // import Test from "./components/test/test";
 // import Test from "./components/test";
 // import Vishnu from "./components/Vishnu";
-function App(){
+function HaveFood(){
   return(
     <>
     <div className="main">
@@ -21,4 +21,4 @@ function App(){
   )
 }
 
-export default App
+export default HaveFood
