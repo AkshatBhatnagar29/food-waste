@@ -31,7 +31,11 @@ function Maps() {
         } else {
             console.error("Geolocation is not supported by this browser.");
         }
+
     }, []);
+                //    console.log(userLocation.latitude)
+                //    console.log(userLocation.longitude)
+                //    console.log(userLocation.longitude)
 
     const handleUser2MarkerClick = () => {
         setShowUser2Details(!showUser2Details); 
@@ -53,7 +57,8 @@ function Maps() {
        <>
        <div>
         
-           <Map mapboxAccessToken="pk.eyJ1IjoidmlzaG51MTM0NSIsImEiOiJjbHQwMmZkNjMwc2xpMmxvZXBtdzBwM3ppIn0.fUvZwkLLejPGBt_9BwPyZQ"
+           <Map mapboxAccessToken="pk.eyJ1IjoidmlzaG51MTM0NSIsImEiOiJjbHQxYm1hZDkxN2o0MmxvZThxOXN6bm15In0.yZDQTtojsIj9PNPaumSkrg"
+        //    <Map mapboxAccessToken="pk.eyJ1IjoidmlzaG51MTM0NSIsImEiOiJjbHQwMmZkNjMwc2xpMmxvZXBtdzBwM3ppIn0.fUvZwkLLejPGBt_9BwPyZQ"
                 style={{ width: "80vw", height: "70vh", position:"relative" , left:"11vw " ,borderRadius:"20px",top:"6vh",border:"2px solid #453c3c"}}
                 initialViewState={{
                     longitude: lng,
@@ -66,6 +71,7 @@ function Maps() {
                    <Marker latitude={userLocation.latitude} longitude={userLocation.longitude}>
                        <div style={{ color: 'red' }}></div>
                        <img src={wantFood ? "/redmark.png" : (haveFood ? "/greenmark.png" : "/blackmark.png")} alt="error" className="marker"/>
+
                    </Marker>
                )}
              

@@ -3,5 +3,41 @@
 }
 .main{
   background: #dccd9f;
-  height: 100vh;
+  height: 225vh;
+}
+.content{
+  /* background: red; */
+    height: 39vh;
+    /* width: 80vw; */
+    text-align: center;
+    /* position: fixed; */
+    left: 11vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-left: 94px;
+    padding-right: 90px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    height: 62vh;
+
+}
+.content h1{
+  font-size: 10vh;
+  margin: 10px;
+}
+.forms{
+  display: flex;
+}
+.content ul{
+  text-align: left;
+}
+.content ul li{
+  margin: 10px;
+}
+.content p{
+  margin: 10px;
+}
+.content span{
+  font-weight: bold;
 }
